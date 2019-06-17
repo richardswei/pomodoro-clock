@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pomodoro Clock</title>
+</head>
+<body>
+	<h1>Pomodoro Clock</h1>
+	<div>Session</div>
+	<input id="sessionQuantity" type="number"></input>
+	<div>Break</div>
+	<input id="breakQuantity" type="number"></input>
+	<div id="timeType">Session</div>
+	<div id="timerDisplay">Press Start</div>
+	<button id="startButton" onclick="startStopClock(this)">Start</button>
+	<button id="stopButton" onclick="resetClock()">Stop & Reset</button>
+	<script type="text/javascript" src="pomodoro.js">
+		function initialSessionTime() {
+			document.getElementById('timerDisplay').innerHTML = 
+				document.getElementById('sessionQuantity').value;
+		}
+	</script>
+</body>
+</html>
