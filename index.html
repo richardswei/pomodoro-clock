@@ -17,20 +17,16 @@
 		}
 	</style>
 	<script type="text/javascript" src="pomodoro.js"></script>
-	<script type="text/javascript">
-		function timerChange(timeValue) {
-			document.getElementById("#timeLeft").innerHTML = timeValue;
-		}
-	</script>
+
 	<title>Pomodoro Clock</title>
 </head>
 <body>
 	<div id="clockBody">
 		<h1>Pomodoro Clock</h1>
 		<div>Session</div>
-		<input id="sessionQuantity" onchange="timerChange(this.value)" type="number" value="10" max="60" min="1"></input>
+		<input id="sessionQuantity" onchange="sessionChange(this.value)" type="number" value="10" max="60" min="1"></input>
 		<div>Break</div>
-		<input id="breakQuantity" type="number" value="10" max="60" min="1"></input>
+		<input id="breakQuantity" onchange="breakChange(this.value)" type="number" value="10" max="60" min="1"></input>
 		<div id="timerDisplay">
 			<div id="timeType">Session</div>
 			<div id="timeLeft">10</div>

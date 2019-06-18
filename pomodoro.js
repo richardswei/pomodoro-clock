@@ -49,3 +49,15 @@ function resetAsSession() {
 	document.getElementById('timeLeft').innerHTML = timeToSet;
 	document.getElementById('timeType').innerHTML="Session";
 }
+
+function sessionChange(timeValue) {
+	if (document.getElementById('timeType').innerHTML=="Session"){
+		document.getElementById("timeLeft").innerHTML = timeValue;
+	}
+}
+
+function breakChange(timeValue) {
+	if(document.getElementById('timeType').innerHTML=="Break"){
+		document.getElementById("timeLeft").innerHTML = timeValue;
+	}	
+}
