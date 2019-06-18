@@ -5,9 +5,9 @@ function startStopClock(button) {
 		button.innerHTML = 'Start';
 	} else {
 		button.interval = setInterval(function() {
-			var timeToSet = document.getElementById('timeLeft').innerHTML;
+			var timeToSet = timeToSeconds(document.getElementById('timeLeft').innerHTML);
 			var newTime = parseFloat(timeToSet)-1;
-			document.getElementById('timeLeft').innerHTML = newTime;
+			document.getElementById('timeLeft').innerHTML = secondsToTime(newTime);
 			if (newTime==-1) {
 				initializeNextPeriod();
 			}
@@ -40,24 +40,39 @@ function resetClock(value) {
 
 function resetAsBreak() {
 	var timeToSet = document.getElementById('breakQuantity').value;
-	document.getElementById('timeLeft').innerHTML = timeToSet;
+	document.getElementById('timeLeft').innerHTML = minutesToTime(timeToSet);
 	document.getElementById('timeType').innerHTML="Break"; 	
 }
 
 function resetAsSession() {
 	var timeToSet = document.getElementById('sessionQuantity').value;
-	document.getElementById('timeLeft').innerHTML = timeToSet;
+	document.getElementById('timeLeft').innerHTML = minutesToTime(timeToSet);
 	document.getElementById('timeType').innerHTML="Session";
 }
 
 function sessionChange(timeValue) {
 	if (document.getElementById('timeType').innerHTML=="Session"){
-		document.getElementById("timeLeft").innerHTML = timeValue;
+		document.getElementById("timeLeft").innerHTML = minutesToTime(timeValue);
 	}
 }
 
 function breakChange(timeValue) {
 	if(document.getElementById('timeType').innerHTML=="Break"){
-		document.getElementById("timeLeft").innerHTML = timeValue;
+		document.getElementById("timeLeft").innerHTML = minutesToTime(timeValue);
 	}	
+}
+
+function minutesToTime(minutes) {
+	return new Date(minutes * 60 * 1000).toISOString().substr(11, 8);
+}
+
+function secondsToTime(seconds) {
+	return new Date(seconds * 1000).toISOString().substr(11, 8);
+}
+
+function timeToSeconds(time) {
+	var hoursMinSecs = time.split(':');
+	return hoursMinSecs
+		.map(function(a, i){ return parseFloat(a)*Math.pow(60, (2-i));})
+		.reduce(function(a,b){return a+b;})
 }
