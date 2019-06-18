@@ -2,18 +2,34 @@
 <html>
 <head>
 	<style type="text/css">
+		h1 {
+			text-align: center;
+		}
+		h4{
+			margin-bottom: 5px
+		}
 		#clockBody {
 			position: absolute;
 			left: 50%;
 			transform: translateX(-50%);
+			width: 80%
 		}
 		input {
-			margin-bottom: 10px;
+			margin-bottom: 20px;
+			margin-top: 5px;
 			padding: 5px;
 			font-size: 15px
+			width: 75%;
 		}
 		body { 
 			background-color: ivory
+		}
+		#panelGroup{
+			width: 100%;
+		}
+		.panel{
+			width: 50%;
+			float: left;
 		}
 	</style>
 	<script type="text/javascript" src="pomodoro.js"></script>
@@ -21,18 +37,30 @@
 	<title>Pomodoro Clock</title>
 </head>
 <body>
+	<h1>Pomodoro Clock</h1>
 	<div id="clockBody">
-		<h1>Pomodoro Clock</h1>
-		<div>Session</div>
-		<input id="sessionQuantity" onchange="sessionChange(this.value)" type="number" value="10" max="60" min="1"></input>
-		<div>Break</div>
-		<input id="breakQuantity" onchange="breakChange(this.value)" type="number" value="10" max="60" min="1"></input>
-		<div id="timerDisplay">
-			<div id="timeType">Session</div>
-			<div id="timeLeft">10</div>
+		<div id="panelGroup">
+			<div class="panel">
+				<h4>Session</h4>
+				<div>Max: 120min, Min: 5min</div>
+				<input id="sessionQuantity" onchange="sessionChange(this.value)" type="number" value="30" max="120" min="5"></input>
+				<h4>Break</h4>
+				<div>Max: 30min, Min: 5min</div>
+				<input id="breakQuantity" onchange="breakChange(this.value)" type="number" value="10" max="30" min="5"></input>
+			</div>
+			<div class="panel">
+				<div id="timerDisplay">
+					<h2>Timer</h2>
+					<h3 id="timeType">Session:</h3>
+					<h3 id="timeLeft">00:30:00</h3>
+				</div>
+				<button id="startButton" onclick="startStopClock(this)">Start</button>
+				<button id="stopButton" onclick="resetClock()">Reset</button>
+			</div>
 		</div>
-		<button id="startButton" onclick="startStopClock(this)">Start</button>
-		<button id="stopButton" onclick="resetClock()">Reset</button>
+		
+		
+
 	</div>
 
 </body>
