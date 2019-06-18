@@ -1,16 +1,13 @@
 function startStopClock(button) {
 	if(button.interval){
 		clearInterval(button.interval);
+		button.interval=0;
 		button.innerHTML = 'Start';
 	} else {
-		var timeText = document.getElementById('timerDisplay').innerHTML;
-		if (timeText=="Press Start") {
-			resetAsSession();
-		}
 		button.interval = setInterval(function() {
-			var timeToSet = document.getElementById('timerDisplay').innerHTML;
+			var timeToSet = document.getElementById('timeLeft').innerHTML;
 			var newTime = parseFloat(timeToSet)-1;
-			document.getElementById('timerDisplay').innerHTML = newTime;
+			document.getElementById('timeLeft').innerHTML = newTime;
 			if (newTime==-1) {
 				initializeNextPeriod();
 			}
@@ -43,12 +40,12 @@ function resetClock(value) {
 
 function resetAsBreak() {
 	var timeToSet = document.getElementById('breakQuantity').value;
-	document.getElementById('timerDisplay').innerHTML = timeToSet;
+	document.getElementById('timeLeft').innerHTML = timeToSet;
 	document.getElementById('timeType').innerHTML="Break"; 	
 }
 
 function resetAsSession() {
 	var timeToSet = document.getElementById('sessionQuantity').value;
-	document.getElementById('timerDisplay').innerHTML = timeToSet;
+	document.getElementById('timeLeft').innerHTML = timeToSet;
 	document.getElementById('timeType').innerHTML="Session";
 }

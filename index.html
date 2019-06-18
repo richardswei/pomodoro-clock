@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style type="text/css">
+		#clockBody {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		input {
+			margin-bottom: 10px;
+			padding: 5px;
+			font-size: 15px
+		}
+		body { 
+			background-color: ivory
+		}
+	</style>
+	<script type="text/javascript" src="pomodoro.js"></script>
+	<script type="text/javascript">
+		function timerChange(timeValue) {
+			document.getElementById("#timeLeft").innerHTML = timeValue;
+		}
+	</script>
 	<title>Pomodoro Clock</title>
 </head>
 <body>
-	<h1>Pomodoro Clock</h1>
-	<div>Session</div>
-	<input id="sessionQuantity" type="number"></input>
-	<div>Break</div>
-	<input id="breakQuantity" type="number"></input>
-	<div id="timeType">Session</div>
-	<div id="timerDisplay">Press Start</div>
-	<button id="startButton" onclick="startStopClock(this)">Start</button>
-	<button id="stopButton" onclick="resetClock()">Stop & Reset</button>
-	<script type="text/javascript" src="pomodoro.js">
-		function initialSessionTime() {
-			document.getElementById('timerDisplay').innerHTML = 
-				document.getElementById('sessionQuantity').value;
-		}
-	</script>
+	<div id="clockBody">
+		<h1>Pomodoro Clock</h1>
+		<div>Session</div>
+		<input id="sessionQuantity" onchange="timerChange(this.value)" type="number" value="10" max="60" min="1"></input>
+		<div>Break</div>
+		<input id="breakQuantity" type="number" value="10" max="60" min="1"></input>
+		<div id="timerDisplay">
+			<div id="timeType">Session</div>
+			<div id="timeLeft">10</div>
+		</div>
+		<button id="startButton" onclick="startStopClock(this)">Start</button>
+		<button id="stopButton" onclick="resetClock()">Reset</button>
+	</div>
+
 </body>
 </html>
